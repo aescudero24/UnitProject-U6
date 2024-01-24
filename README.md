@@ -1,12 +1,21 @@
 # UnitProject-U6
 
 # Group Members:
+    Adrian Escudero
     Blair Johnson
     Kayleah Daniels
-    Adrian Escudero
+    
 
 # Project Name: 
-    
+    The Caring Cove
+    The Haven Shelter
+    Pet Pals Paradise
+    Wildlife Wonders
+    Buddy Brigade
+    Hope Animal Foundation
+    Pet Haven of Love
+    Animal House
+    Homebound Animal Care
 
 # Models:
     Owner: 

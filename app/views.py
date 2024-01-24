@@ -1,6 +1,7 @@
 
 from django.shortcuts import render, redirect 
 from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
@@ -49,7 +50,7 @@ def loginPage(request):
 
 	if request.method == "POST":
 		username = request.POST.get("username")
-		password =request.POST.get("password")
+		password = request.POST.get("password")
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
@@ -63,3 +64,16 @@ def loginPage(request):
 def logoutPage(request):
 	logout(request)
 	return redirect("login")
+
+@login_required
+@admin_only
+def adoptionPage(request):
+	...
+
+@admin_only
+def adminPage(request):
+	owner = User.objects.all()
+	if request.method == "POST":
+		login_form = AuthenticationForm(request, request.POST)
+		if login_form.is_valid():
+			login(request, ...)
