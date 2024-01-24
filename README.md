@@ -6,7 +6,7 @@
     Adrian Escudero
 
 # Project Name: 
-    TBD
+    
 
 # Models:
     Owner: 
@@ -35,7 +35,5 @@
         -status
         -note
         -date created
-
-    
 
     
