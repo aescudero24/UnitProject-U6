@@ -19,12 +19,12 @@ class Pet(models.Model):
                 ('Male', 'Male'),
                 ('Female', 'Female')
         )
-        
+
         picture = models.ImageField( upload_to=None, null=True)
         owner = models.ForeignKey(User, on_delete = models.CASCADE)
         name = models.TextField()
         age = models.IntegerField()
-        gender = models.TextField(null=True, Type=GENDER)
+        gender = models.TextField(null=True, bio=GENDER)
         type = models.ForeignKey(Type, on_delete = models.CASCADE)
         description = models.TextField()
 
