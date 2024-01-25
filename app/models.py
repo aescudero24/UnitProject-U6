@@ -6,21 +6,25 @@ from django.contrib.auth.models import User
 
 class Owner(models.Model): 
         profile_picture = models.ImageField(upload_to=None, null=True, blank=True)
-        user = models.TextField()
+        user = models.OneToOneField(User, on_delete = models.CASCADE)
         name = models.TextField()
         phone = models.CharField(max_length=13)
-        pets = models.TextField()
         date_created = models.DateField(auto_now=False, auto_now_add=False)
 
 class Type(models.Model):
         name = models.TextField()
 
 class Pet(models.Model):
+        GENDER = (
+                ('Male', 'Male'),
+                ('Female', 'Female')
+        )
+
         picture = models.ImageField( upload_to=None, null=True)
-        owner = models.TextField()
+        owner = models.ForeignKey(User, on_delete = models.CASCADE)
         name = models.TextField()
         age = models.IntegerField()
-        gender = models.TextField(null=True)
+        gender = models.TextField(null=True, choices=GENDER)
         type = models.ForeignKey(Type, on_delete = models.CASCADE)
         description = models.TextField()
 
