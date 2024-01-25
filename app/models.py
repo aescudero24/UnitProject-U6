@@ -19,7 +19,7 @@ class Pet(models.Model):
                 ('Male', 'Male'),
                 ('Female', 'Female')
         )
-
+        
         picture = models.ImageField( upload_to=None, null=True)
         owner = models.ForeignKey(User, on_delete = models.CASCADE)
         name = models.TextField()
