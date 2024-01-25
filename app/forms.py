@@ -22,14 +22,14 @@ class OwnerForm(forms.ModelForm):
 class TypeForm(forms.Form):
 	name = forms.CharField()
 	
-class PetForm(forms.Form):
-	owner = forms.CharField()
-	name = forms.CharField()
-	age = forms.IntegerField()
-	gender = forms.CharField()
-	description = forms.CharField()
+class PetForm(forms.ModelForm):
+		class Meta:
+			model = Pet
+			fields = "__all__"
+			exclude = ["owner"]
 	
 class AdoptionForm(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = "__all__"
+
