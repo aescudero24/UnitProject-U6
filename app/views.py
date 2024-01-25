@@ -87,3 +87,4 @@ def CreatingPet(request):
 		form = PetForm()
 		return render(request, 'accounts/admin_settings', {"form":form})
 	
+	

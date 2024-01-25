@@ -11,8 +11,8 @@ class Owner(models.Model):
         phone = models.CharField(max_length=13)
         date_created = models.DateField(auto_now=False, auto_now_add=False)
 
-# class Type(models.Model):
-#         name = models.TextField()
+class Type(models.Model):
+        name = models.TextField()
 
 class Pet(models.Model):
         GENDER = (
