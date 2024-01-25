@@ -73,7 +73,4 @@ def adoptionPage(request):
 # @admin_only
 def adminPage(request):
 	owner = User.objects.all()
-	if request.method == "POST":
-		login_form = AuthenticationForm(request, request.POST)
-		if login_form.is_valid():
-			login(request, ...)
+	
