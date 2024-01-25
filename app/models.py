@@ -11,8 +11,8 @@ class Owner(models.Model):
         phone = models.CharField(max_length=13)
         date_created = models.DateField(auto_now=False, auto_now_add=False)
 
-class Type(models.Model):
-        name = models.TextField()
+# class Type(models.Model):
+#         name = models.TextField()
 
 class Pet(models.Model):
         GENDER = (
@@ -25,7 +25,7 @@ class Pet(models.Model):
         name = models.TextField()
         age = models.IntegerField()
         gender = models.TextField(null=True, choices=GENDER)
-        type = models.ForeignKey(Type, on_delete = models.CASCADE)
+        type = models.ForeignKey( on_delete = models.CASCADE)
         description = models.TextField()
 
 
