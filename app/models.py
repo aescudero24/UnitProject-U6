@@ -24,7 +24,7 @@ class Pet(models.Model):
         owner = models.ForeignKey(User, on_delete = models.CASCADE)
         name = models.TextField()
         age = models.IntegerField()
-        gender = models.TextField(null=True, bio=GENDER)
+        gender = models.TextField(null=True, choices=GENDER)
         type = models.ForeignKey(Type, on_delete = models.CASCADE)
         description = models.TextField()
 
