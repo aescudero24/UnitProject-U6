@@ -13,9 +13,9 @@
     Wildlife Wonders
     Buddy Brigade
     Hope Animal Foundation
-    Pet Haven of Love
+    Pet Haven of Love 
     Animal House
-    Homebound Animal Care
+    Homebound Animal Care (/B)
 
 # Models:
     Owner: 
