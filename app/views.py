@@ -73,3 +73,17 @@ def adoptionPage(request):
 def adminPage(request):
 	owner = User.objects.all()
 	
+#this is basically the create order
+def CreatingPet(request):
+	if request.method == "POST":
+		form = PetForm(request.POST, request.FILES)
+		if form.is_valid():
+			isinstance = form.save(commit = False)
+			isinstance.user = request.user
+			isinstance.save()
+			return redirect("")
+	else:
+		form = PetForm()
+		return render(request, 'accounts/admin_settings', {"form":form})
+	
+	
