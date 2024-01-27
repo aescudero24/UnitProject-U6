@@ -22,7 +22,7 @@ from .decorators import *
 def dashboardPage(request: HttpRequest) -> HttpResponse:
     context = {}
     return render(request, "admin.html", context)
-	#dashboardPage
+	#home page
 
 #user only page
 @login_required
@@ -68,23 +68,53 @@ def logoutPage(request):
 	logout(request)
 	return redirect("login")
 
+#admin dash page
 @login_required
 # @admin_only
-def PetPage(request):
-	Pet.objects.all()
-	return render(request, 'pet.html')
+def adminPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "admin.html", context)
 
+#pets page
+@login_required
+#@admin_only
+def petsPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "pets.html", context) 
+
+#owner page
+@login_required
+#@admin_only
+def ownerPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "owner.html", context) 
+
+#user dash page
+@login_required
+#@allowed_users(allowed_roles=["owner"])
+def userPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "user.html", context)
+
+#settings page
+@login_required
+#@allowed_users(allowed_roles=["owner"])
+def settingsPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "settings.html", context)
+
+#adoption page
+@login_required
 # @admin_only
 def adminPage(request):
-	Owner.objects.all()
+	owner = Owner.objects.all()
 	if request.method == "POST":
 		login_form = AuthenticationForm(request, request.POST)
 		if login_form.is_valid():
 			loginPage(request, login_form.get_user())
 			return redirect('admin.html')
-	
+#this is basically the create order
 # @admin_only
-# @login_required
 def CreatingPet(request):
 	if request.method == "POST":
 		form = PetForm(request.POST, request.FILES)
