@@ -7,7 +7,19 @@
     
 
 # Project Name: 
+<<<<<<< HEAD
+    The Caring Cove
+    The Haven Shelter
+    Pet Pals Paradise
+    Wildlife Wonders
+    Buddy Brigade
+    Hope Animal Foundation
+    Pet Haven of Love 
     Animal House
+    Homebound Animal Care (/B)
+=======
+    Animal House
+>>>>>>> refs/remotes/origin/main
 
 # Pages:
     []-login page
