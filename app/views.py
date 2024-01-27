@@ -16,14 +16,7 @@ from .decorators import *
 
 # Create your views here.
 
-#admin only page
-@login_required
-# @admin_only
-def dashboardPage(request: HttpRequest) -> HttpResponse:
-    context = {}
-    return render(request, "admin.html", context)
-
-#user only page
+#home page
 @login_required
 # @allowed_users(allowed_roles=[""])
 def homePage(request: HttpRequest) -> HttpResponse:
@@ -64,17 +57,48 @@ def logoutPage(request):
 	logout(request)
 	return redirect("login")
 
+#admin only page
+@login_required
+# @admin_only
+def adminPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "admin.html", context)
+
+#pets page
+@login_required
+#@admin_only
+def petsPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "pets.html", context) 
+
+#owner page
+@login_required
+#@admin_only
+def ownerPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "owner.html", context) 
+
+#user only page
+@login_required
+#@allowed_users(allowed_roles=["owner"])
+def userPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "user.html", context)
+
+#settings page
+@login_required
+#@allowed_users(allowed_roles=["owner"])
+def settingsPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "settings.html", context)
+
 @login_required
 # @admin_only
 def adoptionPage(request):
 	...
-
-# @admin_only
-def adminPage(request):
-	owner = User.objects.all()
 	
 #this is basically the create order
-def CreatingPet(request):
+def createPetPage(request):
 	if request.method == "POST":
 		form = PetForm(request.POST, request.FILES)
 		if form.is_valid():
