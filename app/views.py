@@ -57,7 +57,7 @@ def logoutPage(request):
 	logout(request)
 	return redirect("login")
 
-#admin only page
+#admin dash page
 @login_required
 # @admin_only
 def adminPage(request: HttpRequest) -> HttpResponse:
@@ -78,7 +78,7 @@ def ownerPage(request: HttpRequest) -> HttpResponse:
     context = {}
     return render(request, "owner.html", context) 
 
-#user only page
+#user dash page
 @login_required
 #@allowed_users(allowed_roles=["owner"])
 def userPage(request: HttpRequest) -> HttpResponse:
@@ -92,13 +92,16 @@ def settingsPage(request: HttpRequest) -> HttpResponse:
     context = {}
     return render(request, "settings.html", context)
 
+#adoption page
 @login_required
 # @admin_only
 def adoptionPage(request):
 	...
-	
+
 #this is basically the create order
-def createPetPage(request):
+@login_required
+# @admin_only
+def CreatingPet(request):
 	if request.method == "POST":
 		form = PetForm(request.POST, request.FILES)
 		if form.is_valid():
@@ -108,6 +111,13 @@ def createPetPage(request):
 			return redirect("")
 	else:
 		form = PetForm()
-		return render(request, 'accounts/admin_settings', {"form":form})
-	
+		return render(request, 'create.html', {"form":form})
+
+def deleteUser(request, pk):
+	the_user = Owner.objects.get(id=pk)
+	if request.method == "POST":
+		the_user.delete()
+		return redirect('admin.html')
+	context = {'user_inquestion': the_user}
+	return render(request, 'delete/', context)
 	

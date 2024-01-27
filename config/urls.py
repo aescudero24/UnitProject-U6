@@ -20,4 +20,5 @@ urlpatterns = [
     path("settings/", settingsPage, name="settings"),
 
     path("add-pet/", createPetPage, name="create"),
+    path("delete", deleteUser, name="deleteUser")
 ]

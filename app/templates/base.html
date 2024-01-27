@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TBD</title>
+    <title>Animal</title>
     <link rel="stylesheet" href="{% static "styles.css" %}">
     <link
       rel="stylesheet"
@@ -28,18 +28,18 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <div><a href="{% url "dash" %}">Animal House</a></div>
+          <div class='AnimalHouse'><h1>Animal House<h1></div>
           <ul class="navbar-nav">
             {% if request.user.is_staff %}
             <li class="nav-item active">
-              <a class="nav-link" href="{% url "dash" %}">TBD</a>
+              <a class="nav-link" href="{% url "dash" %}">Users</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url "dash" %}">TBD</a>
+              <a class="nav-link" href="{% url "dash" %}">Animals</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url "dash" %}">TBD</a>
+              <a class="nav-link" href="{% url "dash" %}">Adopt</a>
             </li>
             {% endif %}
           </ul>
@@ -54,7 +54,7 @@
     {% block content %}{% endblock content %}
 
     {% comment "footer" %}{% endcomment %}
-    <h1>hi</h1>
+    
     <footer class="bg-dark text-white">
       
         <div class="container py-4">
