@@ -17,21 +17,21 @@ from .decorators import *
 # Create your views here.
 
 #admin only page
-# @login_required
+@login_required
 # @admin_only
 def dashboardPage(request: HttpRequest) -> HttpResponse:
     context = {}
     return render(request, "admin.html", context)
 
 #user only page
-# @login_required
+@login_required
 # @allowed_users(allowed_roles=[""])
 def homePage(request: HttpRequest) -> HttpResponse:
     context = {}
     return render(request, "home.html", context)
 
 #signup page
-# @unauthenticated_user
+@unauthenticated_user
 def signupPage(request):
 	form = CreateUserForm()
 	if request.method == "POST":
@@ -45,7 +45,7 @@ def signupPage(request):
 	return render(request, "signup.html", context)
 
 #login page
-# @unauthenticated_user
+@unauthenticated_user
 def loginPage(request):
 	if request.method == "POST":
 		username = request.POST.get("username")
@@ -64,7 +64,7 @@ def logoutPage(request):
 	logout(request)
 	return redirect("login")
 
-# @login_required
+@login_required
 # @admin_only
 def PetPage(request):
 	Pet.objects.all()

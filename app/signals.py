@@ -13,6 +13,5 @@ def owner_profile(sender, instance, created, **kwargs):
 			user=instance,
 			name=instance.username,
 			)
-		print('Profile created!')
 
 post_save.connect(owner_profile, sender=User)
