@@ -7,6 +7,7 @@
     
 
 # Project Name: 
+<<<<<<< HEAD
     The Caring Cove
     The Haven Shelter
     Pet Pals Paradise
@@ -16,33 +17,21 @@
     Pet Haven of Love 
     Animal House
     Homebound Animal Care (/B)
+=======
+    Animal House
+>>>>>>> refs/remotes/origin/main
 
-# Models:
-    Owner: 
-        -profile picture
-        -user
-        -name
-        -phone
-        -pets
-        -date created
+# Pages:
+    []-login page
+    []-signup page
+    []-home page
+    []-admin dashboard
+    []-owner info page
+    []-owner (user) dashboard
+    []-profile page
+    []-settings page
+    []-pets page
+    []-form pages
 
-    Pet:
-        -picture
-        -owner
-        -name
-        -age
-        -gender
-        -type
-        -description
-
-    Type:
-        -name
-
-    Adoption:
-        -owner
-        -pet
-        -status
-        -note
-        -date created
 
     
