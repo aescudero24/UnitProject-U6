@@ -22,6 +22,7 @@ from .decorators import *
 def dashboardPage(request: HttpRequest) -> HttpResponse:
     context = {}
     return render(request, "admin.html", context)
+	#dashboardPage
 
 #user only page
 @login_required
@@ -29,6 +30,7 @@ def dashboardPage(request: HttpRequest) -> HttpResponse:
 def homePage(request: HttpRequest) -> HttpResponse:
     context = {}
     return render(request, "home.html", context)
+	#home
 
 #signup page
 @unauthenticated_user
@@ -43,6 +45,7 @@ def signupPage(request):
 			return redirect("login")
 	context = {"form":form}
 	return render(request, "signup.html", context)
+	#signup
 
 #login page
 @unauthenticated_user
@@ -58,6 +61,7 @@ def loginPage(request):
 			messages.info(request, "Username OR password is incorrect")
 	context = {}
 	return render(request, "login.html", context)
+	#login
 
 #logout page
 def logoutPage(request):
@@ -72,13 +76,13 @@ def PetPage(request):
 
 # @admin_only
 def adminPage(request):
-	owner = Owner.objects.all()
+	Owner.objects.all()
 	if request.method == "POST":
 		login_form = AuthenticationForm(request, request.POST)
 		if login_form.is_valid():
 			loginPage(request, login_form.get_user())
 			return redirect('admin.html')
-#this is basically the create order
+	
 # @admin_only
 # @login_required
 def CreatingPet(request):
@@ -89,10 +93,13 @@ def CreatingPet(request):
 			isinstance.user = request.user
 			isinstance.save()
 			return redirect("")
+		#Create function
 	else:
 		form = PetForm()
 		return render(request, 'create.html', {"form":form})
 
+#DeleteUser
+@login_required
 def deleteUser(request, pk):
 	the_user = Owner.objects.get(id=pk)
 	if request.method == "POST":
@@ -100,4 +107,5 @@ def deleteUser(request, pk):
 		return redirect('admin.html')
 	context = {'user_inquestion': the_user}
 	return render(request, 'delete/', context)
+	#delete function
 	
