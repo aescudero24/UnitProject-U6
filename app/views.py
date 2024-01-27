@@ -21,7 +21,7 @@ from .decorators import *
 # @admin_only
 def dashboardPage(request: HttpRequest) -> HttpResponse:
     context = {}
-    return render(request, "dashboard.html", context)
+    return render(request, "admin.html", context)
 
 #user only page
 # @login_required
@@ -66,14 +66,21 @@ def logoutPage(request):
 
 # @login_required
 # @admin_only
-def adoptionPage(request):
-	...
+def PetPage(request):
+	Pet.objects.all()
+	return render(request, 'pet.html')
 
 # @admin_only
 def adminPage(request):
-	owner = User.objects.all()
-	
+	owner = Owner.objects.all()
+	if request.method == "POST":
+		login_form = AuthenticationForm(request, request.POST)
+		if login_form.is_valid():
+			loginPage(request, login_form.get_user())
+			return redirect('admin.html')
 #this is basically the create order
+# @admin_only
+# @login_required
 def CreatingPet(request):
 	if request.method == "POST":
 		form = PetForm(request.POST, request.FILES)
@@ -84,6 +91,13 @@ def CreatingPet(request):
 			return redirect("")
 	else:
 		form = PetForm()
-		return render(request, 'accounts/admin_settings', {"form":form})
-	
+		return render(request, 'create.html', {"form":form})
+
+def deleteUser(request, pk):
+	the_user = Owner.objects.get(id=pk)
+	if request.method == "POST":
+		the_user.delete()
+		return redirect('admin.html')
+	context = {'user_inquestion': the_user}
+	return render(request, 'delete/', context)
 	
