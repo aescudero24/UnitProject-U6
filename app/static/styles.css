@@ -1,10 +1,21 @@
 html{
-
+    height: 100%
+}
+.nav{
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
+}
+.mr-3{
+    color: rgb(255, 255, 255);
 }
 footer{
-    position: relative;
-    top:510px;
-}
-.hello-ms{
-    color: aliceblue;
+   display: flex;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
+   justify-content: end;
 }

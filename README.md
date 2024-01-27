@@ -7,7 +7,7 @@
     
 
 # Project Name: 
-    The Caring Cove
+    The Caring Cove 
     The Haven Shelter
     Pet Pals Paradise
     Wildlife Wonders
@@ -15,7 +15,7 @@
     Hope Animal Foundation
     Pet Haven of Love
     Animal House
-    Homebound Animal Care
+    Homebound Animal Care /
 
 # Models:
     Owner: 
