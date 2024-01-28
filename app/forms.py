@@ -33,3 +33,7 @@ class AdoptionForm(forms.ModelForm):
 		model = User
 		fields = "__all__"
 
+class UpdateForm(forms.ModelForm):
+		class Meta:
+			model = User
+			fields = ['email','username']

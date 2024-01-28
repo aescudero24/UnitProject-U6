@@ -115,7 +115,7 @@ def adminPage(request):
 			return redirect('admin.html')
 #this is basically the create order
 # @admin_only
-def CreatingPet(request):
+def createPetPage(request):
 	if request.method == "POST":
 		form = PetForm(request.POST, request.FILES)
 		if form.is_valid():
@@ -139,3 +139,14 @@ def deleteUser(request, pk):
 	return render(request, 'delete/', context)
 	#delete function
 	
+@login_required(login_url="login")
+def settings(request, pk):
+	settings = Owner.objects.get(id=pk)
+	form = UpdateForm(request.POST, instance=settings)
+	if request.method == "POST":
+		form = UpdateForm(request.POST, instance=settings)
+		if form.is_valid():
+			settings.save()
+			return redirect('settings.html')
+	context = {'form':form}
+	return render(request, 'settings.html', context)
