@@ -1,14 +1,17 @@
 
 from django.shortcuts import render, redirect 
-from django.contrib import messages
+
 from django.utils import timezone
-from django.contrib.auth.forms import AuthenticationForm
+
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
+
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
+
 from .models import *
 from .forms import *
 from .filters import *
@@ -17,17 +20,6 @@ from .decorators import *
 
 # Create your views here.
 
-#admin only page
-@login_required
-# @admin_only
-def dashboardPage(request: HttpRequest) -> HttpResponse:
-	context = {}
-	return render(request, "admin.html", context)
-	#home page
-
-#user only page
-@login_required
-# @allowed_users(allowed_roles=[""])
 #site home page
 def homePage(request: HttpRequest) -> HttpResponse:
     context = {}
@@ -107,11 +99,14 @@ def settingsPage(request, pk):
 	settings = Owner.objects.get(id=pk)
 	form = UpdateForm(request.POST, instance=settings)
 	if request.method == "POST":
-		login_form = AuthenticationForm(request, request.POST)
-		if login_form.is_valid():
-			loginPage(request, login_form.get_user())
-			return redirect('dashboard')
-# @admin_only
+		form = UpdateForm(request.POST, instance=settings)
+		if form.is_valid():
+			settings.save()
+			return redirect('settings.html')
+	context = {'form':form}
+	return render(request, 'settings.html', context)
+		
+#create pet page
 def createPetPage(request):
 	if request.method == "POST":
 		form = PetForm(request.POST, request.FILES)
@@ -139,32 +134,5 @@ def deleteUser(request, pk):
 		messages.error(request, 'Cannot delete an admin account...')
 		return redirect('settings/')
 
-	#delete function: lets the admin delete the user's account but the admin can't delete their own account
+   	#delete function: lets the admin delete the user's account but the admin can't delete their own account
 	
-@login_required(login_url="login")
-def settings(request, pk):
-	settings = Owner.objects.get(id=pk)
-	form = UpdateForm(request.POST, instance=settings)
-	if request.method == "POST":
-		form = UpdateForm(request.POST, instance=settings)
-		if form.is_valid():
-			settings.save()
-			return redirect('settings/')
-	context = {'form':form}
-	return render(request, 'settings.html', context)
-
-def adoptionPage(request):
-	if request.method == 'POST':
-		form = AdoptionForm(request.POST)
-		if form.is_valid():
-			application = form.save(commit=False)
-			application = request.user
-			application.status = 'Pending'
-			application.date_created = timezone.now()
-			application.save()
-			return redirect('ADD SOMETHING HERE')
-	else:
-		form = AdoptionForm()
-		context = {'form': form}
-		return render(request, 'NEEDS A HTML PAGE', context )
-
