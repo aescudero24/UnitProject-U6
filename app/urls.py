@@ -11,7 +11,7 @@ urlpatterns = [
 
     path('dashboard/', adminPage, name="dash"),
     path("pets/", petsPage, name="pets"),
-    path("owner/<str:id>/", ownerPage, name="owner"),
+    path("owner/<str:id>/", homePage, name="owner"),
 
 
     path("home/", userPage, name="user"),

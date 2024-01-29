@@ -19,16 +19,9 @@ from .decorators import *
 
 
 # Create your views here.
-
-#site home page
-def homePage(request: HttpRequest) -> HttpResponse:
-    context = {}
-    return render(request, "home.html", context)
-	#home
-
-#signup page
-@unauthenticated_user
-def signupPage(request):
+		
+# @unauthenticated_user
+def signupPage(request: HttpRequest) -> HttpResponse:
 	form = CreateUserForm()
 	if request.method == "POST":
 		form = CreateUserForm(request.POST)
@@ -39,14 +32,12 @@ def signupPage(request):
 			return redirect("login")
 	context = {"form":form}
 	return render(request, "signup.html", context)
-	#signup
 
-#login page
-@unauthenticated_user
-def loginPage(request):
+# @unauthenticated_user
+def loginPage(request: HttpRequest) -> HttpResponse:
 	if request.method == "POST":
 		username = request.POST.get("username")
-		password = request.POST.get("password")
+		password =request.POST.get("password")
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
@@ -55,59 +46,109 @@ def loginPage(request):
 			messages.info(request, "Username OR password is incorrect")
 	context = {}
 	return render(request, "login.html", context)
-	#login
 
-#logout page
-def logoutPage(request):
+def logoutPage(request: HttpRequest) -> HttpResponse:
 	logout(request)
 	return redirect("login")
 
-#admin dash page
-@login_required
+def homePage(request: HttpRequest) -> HttpResponse:
+	context = {}
+	return render(request, "home.html", context)
+
+# @login_required(login_url="login")
 # @admin_only
-def adminPage(request):
-	owner = Owner.objects.all()
-	if request.method == "POST":
-		login_form = AuthenticationForm(request, request.POST)
-		if login_form.is_valid():
-			loginPage(request, login_form.get_user())
-			return redirect('admin.html')
+def adminPage(request: HttpRequest) -> HttpResponse:
+	adoptions = Adoption.objects.all()
+	owners = Owner.objects.all()
+	total_adoptions = adoptions.count()
+	adopted = adoptions.filter(status="Adopted").count()
+	available = adoptions.filter(status="Available").count()
+	context = {"adoptions":adoptions, "owners":owners,
+	"total_adoptions":total_adoptions,"adopted":adopted,
+	"available":available }
+	return render(request, "admin.html", context)
 
-#pets page
-@login_required
-def petsPage(request: HttpRequest) -> HttpResponse:
-    context = {}
-    return render(request, "pets.html", context) 
-
-#owner page
-@login_required
-#@admin_only
-def ownerPage(request: HttpRequest) -> HttpResponse:
-    context = {}
-    return render(request, "owner.html", context) 
-
-#user dash page
-@login_required
-#@allowed_users(allowed_roles=["owner"])
+# @login_required(login_url="login")
+# @allowed_users(allowed_roles=["student"])
 def userPage(request: HttpRequest) -> HttpResponse:
-    context = {}
-    return render(request, "user.html", context)
+	adoptions = request.user.owner.adoption_set.all()
+	total_adoptions = adoptions.count()
+	adopted = adoptions.filter(status="Adopted").count()
+	available = adoptions.filter(status="Available").count()
+	context = {"adoptions":adoptions, "total_adoptions":total_adoptions,
+	"adopted":adopted,"available":available}
+	return render(request, "user.html", context)
 
-#settings page
-@login_required(login_url="login")
-def settingsPage(request, pk):
-	settings = Owner.objects.get(id=pk)
-	form = UpdateForm(request.POST, instance=settings)
+# @login_required(login_url="login")
+# @allowed_users(allowed_roles=["student"])
+def settingsPage(request: HttpRequest) -> HttpResponse:
+	owner = request.user.owner
+	form = OwnerForm(instance=owner)
 	if request.method == "POST":
-		form = UpdateForm(request.POST, instance=settings)
+		form = OwnerForm(request.POST, request.FILES,instance=owner)
 		if form.is_valid():
-			settings.save()
-			return redirect('settings.html')
-	context = {'form':form}
-	return render(request, 'settings.html', context)
-		
+			form.save()
+	context = {"form":form}
+	return render(request, "settings.html", context)
+
+# @login_required(login_url="login")
+# @allowed_users(allowed_roles=["admin"])
+def petsPage(request: HttpRequest) -> HttpResponse:
+	pets = Pet.objects.all()
+	return render(request, "pets.html", {"pets":pets})
+
+# @login_required(login_url="login")
+# @allowed_users(allowed_roles=["admin"])
+# def ownerPage(request, id):
+# 	owner = Owner.objects.get(id=id)
+# 	adoptions = owner.adoption_set.all()
+# 	adoptions_count = adoptions.count()
+# 	myFilter = AdoptionFilter(request.GET, queryset=adoptions)
+# 	adoptions = myFilter.qs 
+# 	context = {"owner":owner, 'adoptions':adoptions, "adoptions_count":adoptions_count,
+# 	"myFilter":myFilter}
+# 	return render(request, "owner.html",context)
+
+# # @login_required(login_url="login")
+# # @allowed_users(allowed_roles=["admin", "student"])
+# def addPetPage(request, id):
+# 	AdoptionsFormSet = inlineformset_factory(Student, Booking, fields=("book", "status"), extra=10 )
+# 	student = Student.objects.get(id=id)
+# 	formset = BookingFormSet(queryset=Booking.objects.none(),instance=student)
+# 	if request.method == "POST":
+# 		form = BookingForm(request.POST)
+# 		formset = BookingFormSet(request.POST, instance=student)
+# 		if formset.is_valid():
+# 			formset.save()
+# 			return redirect("/")
+# 	context = {"form":formset}
+# 	return render(request, "accounts/booking_form.html", context)
+
+# # @login_required(login_url="login")
+# # @allowed_users(allowed_roles=["admin", "student"])
+# def updateAdoptionPage(request, id):
+# 	adoption = Adoption.objects.get(id=id)
+# 	form = AdoptionForm(instance=adoption)
+# 	if request.method == "POST":
+# 		form = AdoptionForm(request.POST, instance=adoption)
+# 		if form.is_valid():
+# 			form.save()
+# 			return redirect("home")
+# 	context = {"form":form}
+# 	return render(request, "adoption_form.html", context)
+
+# # @login_required(login_url="login")
+# # @allowed_users(allowed_roles=["admin", "student"])
+# def deleteAdoptionPage(request, id):
+# 	adoption = Adoption.objects.get(id=id)
+# 	if request.method == "POST":
+# 		adoption.delete()
+# 		return redirect("home")
+# 	context = {"adoption":adoption}
+# 	return render(request, "delete.html", context)
+
 #create pet page
-def createPetPage(request):
+def createPetPage(request: HttpRequest) -> HttpResponse:
 	if request.method == "POST":
 		form = PetForm(request.POST, request.FILES)
 		if form.is_valid():
@@ -136,3 +177,5 @@ def deleteUser(request, pk):
 
    	#delete function: lets the admin delete the user's account but the admin can't delete their own account
 	
+	#######################################################################################################
+
