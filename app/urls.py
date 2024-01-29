@@ -14,7 +14,7 @@ urlpatterns = [
     path("owner/<str:id>/", homePage, name="owner"),
 
 
-    path("home/", userPage, name="user"),
+    path("user/", userPage, name="user"),
     path("settings/", settingsPage, name="settings"),
 
     path("add-pet/", createPetPage, name="create"),
