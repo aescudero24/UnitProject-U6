@@ -10,30 +10,14 @@ class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']
-
-
-
-class OwnerForm(forms.ModelForm):
+		
+class OwnerForm(ModelForm):
 	class Meta:
-		model = User
+		model = Owner
 		fields = "__all__"
-		exclude = ["date_created"]
-	
-class TypeForm(forms.Form):
-	name = forms.CharField()
-	
-class PetForm(forms.ModelForm):
-		class Meta:
-			model = Pet
-			fields = "__all__"
-			exclude = ["owner"]
-	
-class AdoptionForm(forms.ModelForm):
-	class Meta:
-		model = User
-		fields = "__all__"
+		exclude = ["user"]
 
-class UpdateForm(forms.ModelForm):
-		class Meta:
-			model = User
-			fields = ['email','username']
+class AdoptionForm(ModelForm):
+	class Meta:
+		model = Adoption
+		fields = "__all__"
