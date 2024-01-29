@@ -17,7 +17,6 @@ from .decorators import *
 
 # Create your views here.
 
-<<<<<<< HEAD
 #admin only page
 @login_required
 # @admin_only
@@ -29,9 +28,7 @@ def dashboardPage(request: HttpRequest) -> HttpResponse:
 #user only page
 @login_required
 # @allowed_users(allowed_roles=[""])
-=======
 #site home page
->>>>>>> c76fcb5398deda8a209812581d51e15db1a47741
 def homePage(request: HttpRequest) -> HttpResponse:
     context = {}
     return render(request, "home.html", context)
@@ -110,22 +107,11 @@ def settingsPage(request, pk):
 	settings = Owner.objects.get(id=pk)
 	form = UpdateForm(request.POST, instance=settings)
 	if request.method == "POST":
-<<<<<<< HEAD
 		login_form = AuthenticationForm(request, request.POST)
 		if login_form.is_valid():
 			loginPage(request, login_form.get_user())
 			return redirect('dashboard')
 # @admin_only
-=======
-		form = UpdateForm(request.POST, instance=settings)
-		if form.is_valid():
-			settings.save()
-			return redirect('settings.html')
-	context = {'form':form}
-	return render(request, 'settings.html', context)
-		
-#create pet page
->>>>>>> c76fcb5398deda8a209812581d51e15db1a47741
 def createPetPage(request):
 	if request.method == "POST":
 		form = PetForm(request.POST, request.FILES)
@@ -155,7 +141,6 @@ def deleteUser(request, pk):
 
 	#delete function: lets the admin delete the user's account but the admin can't delete their own account
 	
-<<<<<<< HEAD
 @login_required(login_url="login")
 def settings(request, pk):
 	settings = Owner.objects.get(id=pk)
@@ -182,6 +167,4 @@ def adoptionPage(request):
 		form = AdoptionForm()
 		context = {'form': form}
 		return render(request, 'NEEDS A HTML PAGE', context )
-=======
 
->>>>>>> c76fcb5398deda8a209812581d51e15db1a47741
