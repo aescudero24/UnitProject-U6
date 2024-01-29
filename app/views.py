@@ -1,6 +1,7 @@
 
 from django.shortcuts import render, redirect 
 from django.contrib import messages
+from django.utils import timezone
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -20,8 +21,8 @@ from .decorators import *
 @login_required
 # @admin_only
 def dashboardPage(request: HttpRequest) -> HttpResponse:
-    context = {}
-    return render(request, "admin.html", context)
+	context = {}
+	return render(request, "admin.html", context)
 	#home page
 
 #user only page
@@ -112,7 +113,7 @@ def adminPage(request):
 		login_form = AuthenticationForm(request, request.POST)
 		if login_form.is_valid():
 			loginPage(request, login_form.get_user())
-			return redirect('admin.html')
+			return redirect('dashboard')
 # @admin_only
 def createPetPage(request):
 	if request.method == "POST":
@@ -136,10 +137,10 @@ def deleteUser(request, pk):
 			user_inquestion.delete()
 			return redirect('admin.html')
 		context = {'user_inquestion': user_inquestion}
-		return render(request, 'delete/', context)
+		return render(request, 'delete', context)
 	else:
 		messages.error(request, 'Cannot delete an admin account...')
-		return redirect('settings.html')
+		return redirect('settings/')
 
 	#delete function: lets the admin delete the user's account but the admin can't delete their own account
 	
@@ -151,6 +152,21 @@ def settings(request, pk):
 		form = UpdateForm(request.POST, instance=settings)
 		if form.is_valid():
 			settings.save()
-			return redirect('settings.html')
+			return redirect('settings/')
 	context = {'form':form}
 	return render(request, 'settings.html', context)
+
+def adoptionPage(request):
+	if request.method == 'POST':
+		form = AdoptionForm(request.POST)
+		if form.is_valid():
+			application = form.save(commit=False)
+			application = request.user
+			application.status = 'Pending'
+			application.date_created = timezone.now()
+			application.save()
+			return redirect('ADD SOMETHING HERE')
+	else:
+		form = AdoptionForm()
+		context = {'form': form}
+		return render(request, 'NEEDS A HTML PAGE', context )
