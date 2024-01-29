@@ -1,6 +1,8 @@
 
 from django.shortcuts import render, redirect 
 
+from django.utils import timezone
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -127,11 +129,10 @@ def deleteUser(request, pk):
 			user_inquestion.delete()
 			return redirect('admin.html')
 		context = {'user_inquestion': user_inquestion}
-		return render(request, 'delete/', context)
+		return render(request, 'delete', context)
 	else:
 		messages.error(request, 'Cannot delete an admin account...')
-		return redirect('settings.html')
+		return redirect('settings/')
 
    	#delete function: lets the admin delete the user's account but the admin can't delete their own account
 	
-
