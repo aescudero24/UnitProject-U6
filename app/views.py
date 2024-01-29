@@ -113,7 +113,6 @@ def adminPage(request):
 		if login_form.is_valid():
 			loginPage(request, login_form.get_user())
 			return redirect('admin.html')
-#this is basically the create order
 # @admin_only
 def createPetPage(request):
 	if request.method == "POST":
@@ -123,21 +122,26 @@ def createPetPage(request):
 			isinstance.user = request.user
 			isinstance.save()
 			return redirect("")
-		#Create function
+		#Create function: Lets the admin add in potential pets into the website
 	else:
 		form = PetForm()
 		return render(request, 'create.html', {"form":form})
 
 #DeleteUser
-@login_required
+# @admin_only
 def deleteUser(request, pk):
-	the_user = Owner.objects.get(id=pk)
-	if request.method == "POST":
-		the_user.delete()
-		return redirect('admin.html')
-	context = {'user_inquestion': the_user}
-	return render(request, 'delete/', context)
-	#delete function
+	user_inquestion = Owner.objects.get(id=pk)
+	if request.user.is_superuser and request.user != user_inquestion:
+		if request.method == "POST":
+			user_inquestion.delete()
+			return redirect('admin.html')
+		context = {'user_inquestion': user_inquestion}
+		return render(request, 'delete/', context)
+	else:
+		messages.error(request, 'Cannot delete an admin account...')
+		return redirect('settings.html')
+
+	#delete function: lets the admin delete the user's account but the admin can't delete their own account
 	
 @login_required(login_url="login")
 def settings(request, pk):
