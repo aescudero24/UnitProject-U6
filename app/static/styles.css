@@ -37,15 +37,14 @@ footer {
 }
 
 .field tr {
-    border: solid;
+    
     margin-bottom: 20px;
 }
 
 .field td {
-    
-    border: solid;
-    padding-bottom: 5vh;
-    margin: 15vh;
+    padding-bottom: 10vh;
+    padding-top: 5vh;
+    margin: 25vh;
 }
 
 .field img {
@@ -132,4 +131,28 @@ footer {
     top: 4em;
     position: absolute;
     left:18.5em;
+}
+.adoptButton{
+    position: relative;
+    left:4em;
+    background-color:rgb(196, 255, 196);
+    border: 1px solid black;
+    border-radius: 7px;
+    font-size: 20pt;
+    box-shadow: -1px 4px 10px;
+    transition: .5s;
+
+}
+.adoptButton:hover{
+    background-color: rgb(158, 255, 158);
+}
+.animalnames{
+    position: relative;
+    left: 3.5em;
+}
+.animalinfo{
+    position: relative;
+
+    font-size: 20pt;
+    text-align: center;
 }
