@@ -3,11 +3,7 @@ html, body {
     margin: 0;
 }
 
-.navbar {
-    right: 1em;
-    width: 100%;
 
-}
 .mr-3{
     color: aliceblue;
 }
@@ -68,5 +64,21 @@ footer {
     justify-content: center;
 }
 .intoParagraph{
-    
+    border: solid;
+    display: flex;
+    color: rgb(0, 0, 0);
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+    width: 100%;
+    border-color:black
+}
+.into{
+    display: flex;
+    justify-content: center;
+    width:35em;
+    font-size: 20pt;
+    line-height: 1.8em;
+    padding: 10vh;
 }
