@@ -3,10 +3,10 @@ from .views import *
 
 
 urlpatterns = [
-	path("", homePage, name="home"),   
+	path("home/", homePage, name="home"),   
 
     path("signup/", signupPage, name="signup"),
-    path("login/", loginPage, name="login"),
+    path("", loginPage, name="login"),
     path("logout/", logoutPage, name="logout"),
 
     path('dashboard/', adminPage, name="dash"),
