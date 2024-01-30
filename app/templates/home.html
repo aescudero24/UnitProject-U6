@@ -2,7 +2,15 @@
 {% extends "base.html" %} 
 {% block content %}
 {%load static%}
+<h1 class='welcome'>Welcome!</h1>
 <div class='intoParagraph'>
-<p class='into'>Welcome to AdoptaPet, where hearts find homes and furry friends become family. At AdoptaPet, we believe in the transformative power of pet adoption, creating lifelong bonds between humans and their loving companions. Our clinic is dedicated to providing a haven for animals in need, connecting them with compassionate individuals eager to open their hearts and homes. Whether you're searching for a playful pup, a cozy cat, or a feathered friend, AdoptaPet is here to guide you on a heartwarming journey of companionship and unconditional love. Join us in the joy of making a difference, one adoption at a time.</p>
+   
+    
+    <img class='chicken1' src="{% static 'images/OIP (15).jpg' %}" alt="OIP Image"><h2 class='nugget'>Nugget</h2>
+    
+    <p class='into'>Welcome to AdoptaPet, where hearts find homes and furry friends become family. At AdoptaPet, we believe in the transformative power of pet adoption, creating lifelong bonds between humans and their loving companions. Our clinic is dedicated to providing a haven for animals in need, connecting them with compassionate individuals eager to open their hearts and homes. Whether you're searching for a playful pup, a cozy cat, or a feathered friend, AdoptaPet is here to guide you on a heartwarming journey of companionship and unconditional love. Join us in the joy of making a difference, one adoption at a time.</p>
+    <img class='chicken1' src="{% static 'images/OIP (14).jpg' %}" alt="OIP Image"><h2 class='mittens'>Mittens</h2>
+    <button class='adoptNow'><a href="{% url "login" %}">Adopt Now!<a></button>
+    
 </div>
 {% endblock content %}
