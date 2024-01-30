@@ -1,0 +1,33 @@
+/* Style for the heading */
+.container {
+
+    padding: 4.5em;
+}
+
+/* Style for the add button */
+.btn-add, .btn-delete {
+    font-size: 16px;
+    text-decoration: none;
+    padding: 8px 15px; /* Adjusted padding for button size */
+    border-radius: 5px;
+    display: block;
+    max-width: fit-content;
+    margin: 10px auto; /* Center the buttons horizontally and add space between them */
+
+    /* Add specific styles for each button */
+}
+
+.btn-add {
+    background-color: #3498db;
+    color: #fff;
+    border: 1px solid #3498db;
+    min-width: 80px; /* Adjusted minimum width for the button */
+}
+
+/* Style for the delete button */
+.btn-delete {
+    background-color: #e00505;
+    color: #fbebeb;
+    border: 1px solid #ececec;
+    min-width: 80px; /* Adjusted minimum width for the button */
+}

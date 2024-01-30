@@ -1,6 +1,16 @@
 {% extends "base.html" %} 
 {% block content %} 
-<h1>This is the admin dashboard page</h1>
-<button> AddaPet</button>
-<button>Delete User</button>
+{%load static %}
+<link rel="stylesheet" href="{% static "admin.css" %}">
+
+<div class='container'>
+    <h1>Adding a Pet?</h1>
+    <a class="btn btn-sm btn-outline-info btn-add" href="{% url "create" %}">add</a>
+    <h1>Deleting a User?</h1>
+    <a class="btn btn-sm btn-outline-danger btn-delete" href="{% url "deleteUser" %}">delete</a>
+</div>
+<p></p>
+<p></p>
+<p></p>
+
 {% endblock content %}

@@ -1,13 +1,44 @@
 {% extends "base.html" %} 
-{% block content %} 
-<h1>This is the user settings page</h1>
+{% load static %} 
+{% block content %}
+<br>
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card text-center">
-                <a href="{% url "" %}" class="btn btn-warning btn-block mb-3"></a>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card text-center">
+        <a class="btn btn-warning btn-block mb-3" href="{% url "home" %}"
+          >&#8592; Back to Home Page</a
+        >
+        <hr />
+        <h3>Account Settings</h3>
+        <hr />
+        {% comment %} <img
+          class="profile-pic img-fluid"
+          src="{{ request.user.owner.profile_pic.url }}"
+          alt="Profile Picture"
+        /> {% endcomment %}
+      </div>
     </div>
+    <div class="col-md-8">
+      <div class="card">
+        <h4 class="mb-4">Edit Your Information</h4>
+        <form method="POST" action="" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row mb-3">
+            <div class="col-md-6">Name: {{ form.name }}</div>
+            <div class="col-md-6">Phone: {{ form.phone }}</div>
+          </div>
+          {% comment %} <div class="row mb-3">
+            <div class="col-md-12">Profile Picture: {{ form.profile_pic.url }}</div>
+          </div> {% endcomment %}
+          <button class="btn btn-primary btn-block" type="submit">
+            Update Information
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock content %}
+<br>
+<br>
+{% endblock %}
