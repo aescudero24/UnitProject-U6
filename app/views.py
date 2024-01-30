@@ -163,8 +163,8 @@ def createPetPage(request: HttpRequest) -> HttpResponse:
 
 #DeleteUser
 # @admin_only
-def deleteUser(request, pk):
-	user_inquestion = Owner.objects.get(id=pk)
+def deleteUser(request, user):
+	user_inquestion = Owner.objects.get(user=user)
 	if request.user.is_superuser and request.user != user_inquestion:
 		if request.method == "POST":
 			user_inquestion.delete()
