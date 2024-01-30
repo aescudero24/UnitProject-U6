@@ -26,6 +26,7 @@ footer {
 .AnimalHouse {
     color: rgb(246, 251, 255);
     font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 15vh;
 }
 
 .header-title {

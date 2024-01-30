@@ -8,7 +8,7 @@
 
 # Project Name:
 
-    Animal House
+    AdoptaPet
 
 # Pages:
 
