@@ -4,7 +4,7 @@ html, body {
 }
 
 .navbar {
-
+    right: 1em;
     width: 100%;
 
 }
@@ -20,7 +20,7 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: center;
-    background-color: #333; /* Added background color for better visibility*/ 
+    /* Added background color for better visibility*/ 
 }
 
 .AnimalHouse {
