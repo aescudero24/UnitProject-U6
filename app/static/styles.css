@@ -26,3 +26,28 @@ footer{
 .header-title{
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+.field {
+    border: none;
+    border-spacing: 0px;
+  }
+  
+  .field tr, .field td {
+    border: none;
+    padding: 10vh;
+    vertical-align: top;
+  }
+  
+  .field img {
+    display: block;
+    width: 20vh;
+    height: 15vh;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    gap: 5em
+  }
+  .animals{
+    display: flex;
+    justify-content: center ;
+
+  }
