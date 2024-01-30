@@ -16,7 +16,7 @@
   </head>
   <body>
     {% comment "navbar" %}{% endcomment %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-fixed">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-fixed right-1em">
         <button
           class="navbar-toggler"
           type="button"
@@ -29,7 +29,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <div class='AnimalHouse'><h1>Animal House<h1></div>
+          <div class='AnimalHouse'><h1>AdoptaPet <h1></div>
           <ul class="navbar-nav">
             {% if request.user.is_staff %}
             <li class="nav-item active">
@@ -37,6 +37,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url "pets" %}">Animals</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "settings" %}">Settings</a>
             </li>
             {% else %}
             <li class="nav-item">
@@ -47,7 +50,7 @@
         </div>
         <div class="d-flex">
           <span class="hello-msg mr-3">Hello, {{ request.user }}!</span>
-          <a class="hello-msg" href="{% url "logout" %}">Logout</a>
+          {%if request.user.is_staff%}<a class="hello-msg" href="{% url "logout" %}">Logout</a>{%else%}<a class="hello-msg" href="{% url "login" %}">Sign In</a>{% endif %}
         </div>
       </nav>
 
