@@ -41,7 +41,7 @@ def loginPage(request: HttpRequest) -> HttpResponse:
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
-			return redirect("dash")
+			return redirect("home")
 		else:
 			messages.info(request, "Username OR password is incorrect")
 	context = {}
