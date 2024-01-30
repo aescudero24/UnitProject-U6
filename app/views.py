@@ -53,7 +53,7 @@ def logoutPage(request: HttpRequest) -> HttpResponse:
 
 def homePage(request: HttpRequest) -> HttpResponse:
 	context = {}
-	return render(request, "", context)
+	return render(request, "home.html", context)
 
 # @login_required(login_url="login")
 # @admin_only
