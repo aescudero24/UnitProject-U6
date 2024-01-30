@@ -21,3 +21,8 @@ class AdoptionForm(ModelForm):
 	class Meta:
 		model = Adoption
 		fields = "__all__"
+
+class PetForm(ModelForm):
+	class Meta:
+		model = Pet
+		fields = "__all__"
