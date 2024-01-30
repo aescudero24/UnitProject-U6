@@ -8,7 +8,9 @@ html, body {
     width: 100%;
 
 }
-
+.mr-3{
+    color: aliceblue;
+}
 
 footer {
     display: flex;
@@ -33,7 +35,6 @@ footer {
 .field {
     display: flex;
     justify-content: center;
-    gap: 1em;
     margin: 20px;
 }
 
@@ -43,6 +44,7 @@ footer {
 }
 
 .field td {
+    
     border: solid;
     padding-bottom: 5vh;
     margin: 15vh;
