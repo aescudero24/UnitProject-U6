@@ -20,29 +20,14 @@ footer {
     text-align: center;
     background-color: #333; /* Added background color for better visibility*/ 
 }
-<<<<<<< HEAD
 
 .AnimalHouse {
     color: rgb(246, 251, 255);
-=======
-footer{
-    color: pink;
-    display: flex;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    justify-content: end;
-}
-.AnimalHouse{
-    color:rgb(40, 132, 208);
->>>>>>> 10766e7fedee685082461eebabebc09483e636de
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .header-title {
     font-family: Georgia, 'Times New Roman', Times, serif;
-<<<<<<< HEAD
 }
 
 .field {
@@ -78,6 +63,4 @@ footer{
 .animals {
     display: flex;
     justify-content: center;
-=======
->>>>>>> 10766e7fedee685082461eebabebc09483e636de
 }
