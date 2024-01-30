@@ -1,36 +1,37 @@
+
 {% extends "base.html" %} 
 {% block content %}
+{%load static%}
 <header class="bg-indigo-600 text-black text-center py-10 ">
     
 </header>
-<h1>This is the home page</h1>
+<center> <h1>Animals</h1> <center>
 <div class='animals'>
     <table class="field">
         <tr>
         <td>
-            <img src="static/images/OIP.jpg">
+            <img src="{% static 'images/OIP (1).jpg' %}" alt="OIP Image">
         </td>
         <td>
-            <img src="static/images/OIP.jpg">
-            <img src="https://image.ibb.co/hgT9iT/rock_1.png">
+            <img src="{% static 'images/OIP (2).jpg' %}" alt="OIP Image">
+
         </td>
         <td>
-            <img src="https://image.ibb.co/hTXDA8/land.png">
-            <img src="https://image.ibb.co/hgT9iT/rock_1.png">
-            <img src="https://image.ibb.co/eFMUiT/coin.png">
+            <img src="{% static 'images/OIP (3).jpg' %}" alt="OIP Image">
+
         </td>
         </tr>
         <tr>
         <td>
-            <img src="https://image.ibb.co/hTXDA8/land.png">
+            <img src="{% static 'images/OIP (4).jpg' %}" alt="OIP Image">
         </td>
         <td>
-            <img src="https://image.ibb.co/hTXDA8/land.png">
-            <img src="https://image.ibb.co/hgT9iT/rock_1.png">
+            <img src="{% static 'images/OIP (5).jpg' %}" alt="OIP Image">
+
         </td>
         <td>
-            <img src="https://image.ibb.co/hTXDA8/land.png">
-            <img src="https://image.ibb.co/hgT9iT/rock_1.png">
+            <img src="{% static 'images/OIP (6).jpg' %}" alt="OIP Image">
+
         </td>
         </tr>
     </table>

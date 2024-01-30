@@ -33,10 +33,10 @@
           <ul class="navbar-nav">
             {% if request.user.is_staff %}
             <li class="nav-item active">
-              <a class="nav-link" href="{% url "dash" %}">Users</a>
+              <a class="nav-link" href="{% url "user" %}">Users</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url "dash" %}">Animals</a>
+              <a class="nav-link" href="{% url "pets" %}">Animals</a>
             </li>
             {% else %}
             <li class="nav-item">
