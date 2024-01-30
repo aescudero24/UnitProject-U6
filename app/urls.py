@@ -13,11 +13,10 @@ urlpatterns = [
 
     path("home/", homePage, name="home"),
     path('dashboard/', adminPage, name="dash"),
+    
     path("pets/", petsPage, name="pets"),
     path("owner/<str:id>/", homePage, name="owner"),
 
-
-    path("user/", userPage, name="user"),
     path("settings/", settingsPage, name="settings"),
 
     path("add-pet/", createPetPage, name="create"),

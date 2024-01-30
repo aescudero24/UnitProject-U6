@@ -33,14 +33,15 @@
           <ul class="navbar-nav">
             {% if request.user.is_staff %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url "user" %}">Users</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="{% url "pets" %}">Animals</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url "settings" %}">Settings</a>
             </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "dash" %}">Admin</a>
+          </li>
             {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{% url "dash" %}">Adopt</a>
