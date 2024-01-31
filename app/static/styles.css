@@ -1,3 +1,4 @@
+
 html, body {
     height: 100%;
     margin: 0;
@@ -36,15 +37,14 @@ footer {
 }
 
 .field tr {
-    border: solid;
+    
     margin-bottom: 20px;
 }
 
 .field td {
-    
-    border: solid;
-    padding-bottom: 5vh;
-    margin: 15vh;
+    padding-bottom: 10vh;
+    padding-top: 5vh;
+    margin: 25vh;
 }
 
 .field img {
@@ -64,7 +64,7 @@ footer {
     justify-content: center;
 }
 .intoParagraph{
-    border: solid;
+
     display: flex;
     color: rgb(0, 0, 0);
     position: relative;
@@ -72,13 +72,87 @@ footer {
     text-align: center;
     height: auto;
     width: 100%;
-    border-color:black
+
 }
 .into{
     display: flex;
     justify-content: center;
-    width:35em;
+    width:40em;
     font-size: 20pt;
     line-height: 1.8em;
-    padding: 10vh;
+    padding: 20vh;
+
+}
+.chicken1{
+    position: relative;
+    width:40vh;
+    height: 50vh;
+    padding: 0vh;
+    top:20em;
+    border-radius: 7px;
+
+}
+.nugget{
+    position: absolute;
+    left:3em;
+    top:7em;
+}
+.mittens{
+    position: absolute;
+    right:3em;
+    top:7em;
+}
+.adoptNow{
+    position: absolute;
+    right:13em;
+    
+    bottom:0em;
+    font-size: 40pt;
+    background-color:rgb(121, 248, 121);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 5px 15px;
+    margin-bottom:25px;
+    
+}
+.adoptNow a{
+    color: black;
+    text-decoration: none;
+}
+.adoptNow:hover{
+    background-color: rgb(15, 182, 15);
+    text-decoration: none;
+}
+.adoptNow a:hover{
+    color: black;
+    text-decoration: none;
+}
+.welcome{
+    top: 4em;
+    position: absolute;
+    left:18.5em;
+}
+.adoptButton{
+    position: relative;
+    left:4em;
+    background-color:rgb(196, 255, 196);
+    border: 1px solid black;
+    border-radius: 7px;
+    font-size: 20pt;
+    box-shadow: -1px 4px 10px;
+    transition: .5s;
+
+}
+.adoptButton:hover{
+    background-color: rgb(158, 255, 158);
+}
+.animalnames{
+    position: relative;
+    left: 3.5em;
+}
+.animalinfo{
+    position: relative;
+
+    font-size: 20pt;
+    text-align: center;
 }
