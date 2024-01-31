@@ -5,10 +5,11 @@
     <div class="custom-row">
         <div class="customer-col-md-4">
             <div class="custom-card text-center">
-                <form action="" method="POST" class="custom-form">
-                    {% csrf_token %} {{ form.as_p }}
-                    <button type="submit" class="custom-submit-button">Submit</button>
-                </form>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit">Submit</button>
+                </form>                
             </div>
         </div>
     </div>
