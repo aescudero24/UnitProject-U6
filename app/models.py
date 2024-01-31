@@ -28,7 +28,6 @@ class Pet(models.Model):
 	)
         name = models.CharField(max_length=200, null=True)
         age = models.IntegerField()
-        type = models.ManyToManyField(Type)
         gender = models.CharField(max_length=200, null=True, choices=GENDER)
         picture = models.ImageField(upload_to="images/pets")
         date_created = models.DateTimeField(auto_now_add=True, null=True)

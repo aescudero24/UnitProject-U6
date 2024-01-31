@@ -1,0 +1,33 @@
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+.customer-container {
+    max-width: 1200px;
+
+}
+.custom-row {
+    margin: 20px 0;
+}
+
+.custom-card {
+    border: 1px solid #ccc;
+}   
+.custom-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-submit-button {
+    background-color: blueviolet;
+    color: #fff;
+    padding: 10px 20px;
+    border: None;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-submit-button:hover {
+    background-color: darkgreen;
+}

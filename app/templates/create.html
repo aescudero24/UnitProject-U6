@@ -1,13 +1,17 @@
 {% extends "base.html" %} 
 {% block content %} 
-<h1>This is create page</h1>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card text-center">
-                <a href="{% url "" %}" class="btn btn-warning btn-block mb-3"></a>
+<br></br>
+<div class="custom-container">
+    <div class="custom-row">
+        <div class="customer-col-md-4">
+            <div class="custom-card text-center">
+                <form action="" method="POST" class="custom-form">
+                    {% csrf_token %} {{ form.as_p }}
+                    <button type="submit" class="custom-submit-button">Submit</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+<br></br>
 {% endblock content %}
