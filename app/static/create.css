@@ -1,33 +1,55 @@
 body, h1, h2, h3, p {
     margin: 0;
     padding: 0;
+    /* border: solid; */
+    /* border-color: rgb(217, 255, 0); */
+    position: center;
+    
 }
 
 .customer-container {
-    max-width: 1200px;
+    max-width: 120px;
+    /* border: solid; */
+    /* border-color: rgb(255, 115, 0); */
 
 }
 .custom-row {
     margin: 20px 0;
+    /* border: solid; */
+    /* border-color: blue; */
 }
 
 .custom-card {
-    border: 1px solid #ccc;
+    border: 1px solid #ffffff;
+    /* border: solid; */
+    /* border-color: rgb(0, 217, 255); */
 }   
 .custom-form {
     display: flex;
     flex-direction: column;
+    /* border: solid; */
+    /* border-color: rgb(0, 255, 4); */
 }
 
 .custom-submit-button {
-    background-color: blueviolet;
+    background-color: rgb(187, 103, 0);
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px 50px;
+    padding-left: auto;
     border: None;
     border-radius: 4px;
     cursor: pointer;
+    /* border: solid; */
+    /* border-color: rgb(167, 0, 0); */
+    display: flex;
+    position: center;
+    text-align: justify;
+    margin: auto;
+
 }
 
 .custom-submit-button:hover {
-    background-color: darkgreen;
+    background-color: rgb(218, 80, 0);
+    /* border: solid; */
+    /* border-color: rgb(75, 38, 0); */
 }
