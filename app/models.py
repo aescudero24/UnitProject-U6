@@ -8,7 +8,7 @@ class Owner(models.Model):
         user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
         name = models.CharField(max_length=200, null=True)
         phone = models.CharField(max_length=13, null=True)
-        profile_pic = models.ImageField(upload_to="images/profile_pics", default="profile1.png", null=True, blank=True)
+        profile_pic = models.ImageField(upload_to="profile_pics", default="images/profile1.png", null=True, blank=True)
         date_created = models.DateTimeField(auto_now_add=True, null=True)
 
         def __str__(self):
@@ -29,11 +29,11 @@ class Pet(models.Model):
         name = models.CharField(max_length=200, null=True)
         age = models.IntegerField()
         gender = models.CharField(max_length=200, null=True, choices=GENDER)
-        picture = models.ImageField(upload_to="images/pets")
+        pet_pic = models.ImageField(upload_to="pets_pics")
         date_created = models.DateTimeField(auto_now_add=True, null=True)
 
         def __str__(self):
-                return self.title
+                return self.name
 
 class Adoption(models.Model):
 	STATUS = (
