@@ -149,17 +149,16 @@ def petsPage(request: HttpRequest) -> HttpResponse:
 
 #create pet page
 def createPetPage(request: HttpRequest) -> HttpResponse:
-	if request.method == "POST":
-		form = PetForm(request.POST, request.FILES)
-		if form.is_valid():
-			isinstance = form.save(commit = False)
-			isinstance.user = request.user
-			isinstance.save()
-			return redirect("")
-		#Create function: Lets the admin add in potential pets into the website
-	else:
-		form = PetForm()
-		return render(request, 'create.html', {"form":form})
+    if request.method == 'POST':
+        form = PetForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = PetForm()
+
+    return render(request, 'create.html', {'form': form})
+
 
 #DeleteUser
 # @admin_only
