@@ -1,12 +1,13 @@
 {% extends "base.html" %} 
 {% block content %} 
 <br></br>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card text-center">
-                <form action="" method="POST">
+<div class="custom-container">
+    <div class="custom-row">
+        <div class="customer-col-md-4">
+            <div class="custom-card text-center">
+                <form action="" method="POST" class="custom-form">
                     {% csrf_token %} {{ form.as_p }}
+                    <button type="submit" class="custom-submit-button">Submit</button>
                 </form>
             </div>
         </div>
