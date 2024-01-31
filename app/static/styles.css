@@ -152,7 +152,7 @@ footer {
 }
 .animalinfo{
     position: relative;
-
-    font-size: 20pt;
+    width: 35vh;
+    font-size: 15pt;
     text-align: center;
 }

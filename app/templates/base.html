@@ -78,11 +78,11 @@
               <h5>Explore</h5>
               <ul class="list-unstyled">
                 {% if request.user.is_staff %}
-                <li><a href="{% url "dash" %}">TBD</a></li>
-                <li><a href="{% url "dash" %}">TBD</a></li>
+                <li><a href="{% url "home" %}">Home</a></li>
+                <li><a href="{% url "pets" %}">Pets</a></li>
                 {% else %}
-                <li><a href="{% url "dash" %}">TBD</a></li>
-                <li><a href="{% url "dash" %}">TBD</a></li>
+                <li><a href="{% url "home" %}">Home</a></li>
+                <li><a href="{% url "pets" %}">Pets</a></li>
                 {% endif %}
               </ul>
             </div>
