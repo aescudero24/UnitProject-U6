@@ -26,26 +26,27 @@ class Pet(models.Model):
 		('Male', 'Male'),
 		('Female', 'Female'),
 	)
+        STATUS = (
+        ('Adopted', 'Adopted'),
+        ('Available', 'Available'),
+	)
         name = models.CharField(max_length=200, null=True)
         age = models.IntegerField()
         gender = models.CharField(max_length=200, null=True, choices=GENDER)
         description = models.CharField(max_length=1000, null=True)
         pet_pic = models.ImageField(upload_to="pets_pics")
+        status = models.CharField(max_length=200, default="Available", choices=STATUS)
+        owner = models.ForeignKey(Owner, null=True, on_delete=models.CASCADE)
         date_created = models.DateTimeField(auto_now_add=True, null=True)
 
         def __str__(self):
                 return self.name
 
 class Adoption(models.Model):
-    STATUS = (
-        ('Adopted', 'Adopted'),
-        ('Available', 'Available'),
-	)
     owner = models.ForeignKey(Owner, null=True, on_delete=models.CASCADE)
     pet = models.ForeignKey(Pet, null=True, on_delete=models.CASCADE)
     adopter = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    status = models.CharField(max_length=200, null=True, choices=STATUS)
     note = models.CharField(max_length=1000, null=True)
 
     def __str__(self):
