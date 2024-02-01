@@ -29,6 +29,7 @@ class Pet(models.Model):
         name = models.CharField(max_length=200, null=True)
         age = models.IntegerField()
         gender = models.CharField(max_length=200, null=True, choices=GENDER)
+        description = models.CharField(max_length=1000, null=True)
         pet_pic = models.ImageField(upload_to="pets_pics")
         date_created = models.DateTimeField(auto_now_add=True, null=True)
 
