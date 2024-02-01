@@ -95,10 +95,9 @@ def settingsPage(request: HttpRequest) -> HttpResponse:
 # @allowed_users(allowed_roles=["admin"])
 from django.db.models import Subquery, OuterRef
 
-def petsPage(request: HttpRequest) -> HttpResponse:
-    latest_status_subquery = Adoption.objects.filter(pet=OuterRef('id')).order_by('-date_created').values('status')[:1]
-    pets = Pet.objects.annotate(latest_status=Subquery(latest_status_subquery)).filter(latest_status="Available")
-    return render(request, "pets.html", {"pets": pets})
+def petsPage(request):
+    pets = Pet.objects.filter(status='Available')
+    return render(request, 'pets.html', {'pets': pets})
 
 
 def adoptionPage(request, id):
@@ -114,59 +113,11 @@ def adoptionPage(request, id):
             adoption.adopter = request.user
             adoption.status = 'Adopted'
             adoption.save()
+            pet.status = 'Adopted'
+            pet.owner = request.user.owner
+            pet.save()
             return redirect('pets')
-
     return render(request, 'adoption.html', {'pet': pet, 'adoption_form': adoption_form})
-
-# @login_required(login_url="login")
-# @allowed_users(allowed_roles=["admin"])
-# def ownerPage(request, id):
-# 	owner = Owner.objects.get(id=id)
-# 	adoptions = owner.adoption_set.all()
-# 	adoptions_count = adoptions.count()
-# 	myFilter = AdoptionFilter(request.GET, queryset=adoptions)
-# 	adoptions = myFilter.qs 
-# 	context = {"owner":owner, 'adoptions':adoptions, "adoptions_count":adoptions_count,
-# 	"myFilter":myFilter}
-# 	return render(request, "owner.html",context)
-
-# # @login_required(login_url="login")
-# # @allowed_users(allowed_roles=["admin", "student"])
-# def addPetPage(request, id):
-# 	AdoptionsFormSet = inlineformset_factory(Student, Booking, fields=("book", "status"), extra=10 )
-# 	student = Student.objects.get(id=id)
-# 	formset = BookingFormSet(queryset=Booking.objects.none(),instance=student)
-# 	if request.method == "POST":
-# 		form = BookingForm(request.POST)
-# 		formset = BookingFormSet(request.POST, instance=student)
-# 		if formset.is_valid():
-# 			formset.save()
-# 			return redirect("/")
-# 	context = {"form":formset}
-# 	return render(request, "accounts/booking_form.html", context)
-
-# # @login_required(login_url="login")
-# # @allowed_users(allowed_roles=["admin", "student"])
-# def updateAdoptionPage(request, id):
-# 	adoption = Adoption.objects.get(id=id)
-# 	form = AdoptionForm(instance=adoption)
-# 	if request.method == "POST":
-# 		form = AdoptionForm(request.POST, instance=adoption)
-# 		if form.is_valid():
-# 			form.save()
-# 			return redirect("home")
-# 	context = {"form":form}
-# 	return render(request, "adoption_form.html", context)
-
-# # @login_required(login_url="login")
-# # @allowed_users(allowed_roles=["admin", "student"])
-# def deleteAdoptionPage(request, id):
-# 	adoption = Adoption.objects.get(id=id)
-# 	if request.method == "POST":
-# 		adoption.delete()
-# 		return redirect("home")
-# 	context = {"adoption":adoption}
-# 	return render(request, "delete.html", context)
 
 #create pet page
 def createPetPage(request: HttpRequest) -> HttpResponse:
@@ -179,7 +130,6 @@ def createPetPage(request: HttpRequest) -> HttpResponse:
         form = PetForm()
 
     return render(request, 'create.html', {'form': form})
-
 
 #DeleteUser
 # @admin_only
@@ -198,9 +148,3 @@ def deleteUserPage(request, id):
     else:
         messages.error(request, 'Cannot delete an admin account or access this page.')
         return redirect('admin/')
-
-
-   	#delete function: lets the admin delete the user's account but the admin can't delete their own account
-	
-	#######################################################################################################
-
