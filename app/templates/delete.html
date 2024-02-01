@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+  <div class="card p-4">
+    <h1 class="mb-4">Delete User</h1>
+    <p>
+      Are you sure you want to delete the user '{{ user_in_question.username }}'? This action cannot be undone.
+    </p>
+    <form method="post" action="">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger mr-2">Delete User</button>
+      <a href="{% url 'dash' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</div>
+<br><br><br>
+{% endblock %}

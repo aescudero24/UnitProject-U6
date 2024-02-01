@@ -1,5 +1,5 @@
 
-from django.shortcuts import render, redirect 
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.utils import timezone
 
@@ -93,9 +93,30 @@ def settingsPage(request: HttpRequest) -> HttpResponse:
 
 # @login_required(login_url="login")
 # @allowed_users(allowed_roles=["admin"])
+from django.db.models import Subquery, OuterRef
+
 def petsPage(request: HttpRequest) -> HttpResponse:
-	pets = Pet.objects.all()
-	return render(request, "pets.html", {"pets":pets})
+    latest_status_subquery = Adoption.objects.filter(pet=OuterRef('id')).order_by('-date_created').values('status')[:1]
+    pets = Pet.objects.annotate(latest_status=Subquery(latest_status_subquery)).filter(latest_status="Available")
+    return render(request, "pets.html", {"pets": pets})
+
+
+def adoptionPage(request, id):
+    pet = get_object_or_404(Pet, id=id)
+    adoption_form = AdoptionForm()
+
+    if request.method == 'POST':
+        adoption_form = AdoptionForm(request.POST)
+        if adoption_form.is_valid():
+            adoption = adoption_form.save(commit=False)
+            adoption.pet = pet
+            adoption.owner = pet.owner
+            adoption.adopter = request.user
+            adoption.status = 'Adopted'
+            adoption.save()
+            return redirect('pets')
+
+    return render(request, 'adoption.html', {'pet': pet, 'adoption_form': adoption_form})
 
 # @login_required(login_url="login")
 # @allowed_users(allowed_roles=["admin"])
@@ -162,17 +183,22 @@ def createPetPage(request: HttpRequest) -> HttpResponse:
 
 #DeleteUser
 # @admin_only
-def deleteUser(request, user):
-	user_inquestion = Owner.objects.get(user=user)
-	if request.user.is_superuser and request.user != user_inquestion:
-		if request.method == "POST":
-			user_inquestion.delete()
-			return redirect('admin.html')
-		context = {'user_inquestion': user_inquestion}
-		return render(request, 'delete', context)
-	else:
-		messages.error(request, 'Cannot delete an admin account...')
-		return redirect('settings/')
+def deleteUserPage(request, id):
+    user_in_question = get_object_or_404(User, id=id)
+
+    if request.user.is_superuser and request.user != user_in_question:
+        if request.method == "POST":
+            owner_to_delete = Owner.objects.get(user=user_in_question)
+            owner_to_delete.delete()
+            user_in_question.delete()
+            messages.success(request, 'User deleted successfully.')
+            return redirect('dash')
+        context = {'user_in_question': user_in_question}
+        return render(request, 'delete.html', context)
+    else:
+        messages.error(request, 'Cannot delete an admin account or access this page.')
+        return redirect('admin/')
+
 
    	#delete function: lets the admin delete the user's account but the admin can't delete their own account
 	

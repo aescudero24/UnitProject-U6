@@ -1,16 +1,31 @@
-{% extends "base.html" %} 
-{% block content %} 
-{%load static %}
-<link rel="stylesheet" href="{% static "admin.css" %}">
+{% extends "base.html" %} {% block content %} {% load static %} <link
+rel="stylesheet" href="{% static "admin.css" %}">
 
-<div class='container'>
-    <h1>Adding a Pet?</h1>
-    <a class="btn btn-sm btn-outline-info btn-add" href="{% url "create" %}">add</a>
-    <h1>Deleting a User?</h1>
-    <a class="btn btn-sm btn-outline-danger btn-delete" href="{% url "deleteUser" %}">delete</a>
+<div class="container mt-4 d-flex flex-column align-items-center">
+  <div class="col-md-6 mb-4">
+    <h2>Adding a Pet?</h2>
+    <a class="btn btn-sm btn-outline-info btn-add" href="{% url 'create' %}"
+      >Add Pet</a
+    >
+  </div>
+
+  <div class="col-md-6">
+    <h2>Deleting a User?</h2>
+    <ul class="list-group">
+      {% for owner in owners %}
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        {{ owner.name }}
+        <a
+          class="btn btn-sm btn-outline-danger btn-delete"
+          href="{% url 'delete' id=owner.user.id %}"
+          >Delete</a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
 </div>
-<p></p>
-<p></p>
-<p></p>
 
 {% endblock content %}
