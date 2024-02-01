@@ -19,7 +19,9 @@ footer {
     text-align: center;
     /* Added background color for better visibility*/ 
 }
+@media only screen and (maz-width:620px){
 
+}
 .AnimalHouse {
     color: rgb(246, 251, 255);
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -77,19 +79,22 @@ footer {
 .into{
     display: flex;
     justify-content: center;
-    width:40em;
+    width:30em;
     font-size: 20pt;
     line-height: 1.8em;
-    padding: 20vh;
+    padding: 17vh 5vh;
+    text-align: center;
+    margin: 0vh 10vh;
 
 }
 .chicken1{
+    display: flex;
     position: relative;
-    width:50vh;
+    width:40vh;
     height: 50vh;
-    padding: 0vh;
-    top:15em;
     border-radius: 7px;
+    align-self: center;
+    
 
 }
 .nugget{
@@ -103,9 +108,9 @@ footer {
     top:7em;
 }
 .adoptNow{
+    display: flex;
     position: absolute;
-    right:13em;
-    
+    /* right:13em; */
     bottom:0em;
     font-size: 40pt;
     background-color:rgb(121, 248, 121);
@@ -113,6 +118,8 @@ footer {
     border-radius: 5px;
     box-shadow: 0px 5px 15px;
     margin-bottom:25px;
+    margin-right: 18vw;
+    justify-content: center;
     
 }
 .adoptNow a{
@@ -128,9 +135,11 @@ footer {
     text-decoration: none;
 }
 .welcome{
-    top: 4em;
-    position: absolute;
-    left:18.5em;
+    display: flex;
+    top: 2em;
+    position: relative;
+
+    justify-content: center;
 }
 .adoptButton{
     position: relative;
