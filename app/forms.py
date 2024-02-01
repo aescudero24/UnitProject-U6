@@ -20,7 +20,7 @@ class OwnerForm(ModelForm):
 class AdoptionForm(ModelForm):
 	class Meta:
 		model = Adoption
-		fields = "__all__"
+		fields = ["note"]
 
 class PetForm(ModelForm):
 	class Meta:
