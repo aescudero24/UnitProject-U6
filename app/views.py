@@ -58,15 +58,21 @@ def homePage(request: HttpRequest) -> HttpResponse:
 # @login_required(login_url="login")
 # @admin_only
 def adminPage(request: HttpRequest) -> HttpResponse:
-	adoptions = Adoption.objects.all()
-	owners = Owner.objects.all()
-	total_adoptions = adoptions.count()
-	adopted = adoptions.filter(status="Adopted").count()
-	available = adoptions.filter(status="Available").count()
-	context = {"adoptions":adoptions, "owners":owners,
-	"total_adoptions":total_adoptions,"adopted":adopted,
-	"available":available }
-	return render(request, "admin.html", context)
+    adoptions = Adoption.objects.all()
+    owners = Owner.objects.all()
+    total_adoptions = adoptions.count()
+    adopted = adoptions.filter(note="Adopted").count()
+    available = adoptions.filter(note="Available").count()
+    context = {
+        "adoptions": adoptions,
+        "owners": owners,
+        "total_adoptions": total_adoptions,
+        "adopted": adopted,
+        "available": available
+    }
+    
+    return render(request, "admin.html", context)
+
 
 # @login_required(login_url="login")
 # @allowed_users(allowed_roles=["student"])
