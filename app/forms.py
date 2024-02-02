@@ -26,3 +26,5 @@ class PetForm(ModelForm):
 	class Meta:
 		model = Pet
 		fields = "__all__"
+		exclude = ["owner", "status"]
+	
