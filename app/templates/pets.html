@@ -15,9 +15,11 @@
         />
         <div class="card-body">
           <h5 class="card-title">{{ pet.name }}</h5>
+          {% if not request.user.is_staff %}
           <a href="{% url 'adopt' id=pet.id %}" class="btn btn-primary"
             >Adopt</a
           >
+          {% endif %}
         </div>
       </div>
     </div>
